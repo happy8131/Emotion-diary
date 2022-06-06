@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import DiaryItem from "./DiaryItem";
 import MyButton from "./MyButton";
 
 const sortOptionList = [
@@ -51,7 +52,7 @@ const DiaryList = ({ diaryList }) => {
       }
     };
 
-    const copyList = JSON.parse(JSON.stringify(diaryList));
+    const copyList = JSON.parse(JSON.stringify(diaryList)); //깊은 복사 하기 위해
 
     const filteredList =
       filter === "all" ? copyList : copyList.filter((it) => filterCallBack(it));
@@ -85,9 +86,7 @@ const DiaryList = ({ diaryList }) => {
       </div>
 
       {getProcessedDiaryList().map((it) => (
-        <div key={it.id}>
-          {it.content} {it.emotion}
-        </div>
+        <DiaryItem key={it.id} {...it} />
       ))}
     </div>
   );
@@ -98,4 +97,4 @@ DiaryList.defaultProps = {
 };
 
 export default DiaryList;
-///27분까지 강의
+///42분까지 강의
